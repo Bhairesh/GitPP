@@ -4,35 +4,48 @@
 source ./func.sh 
 
 # Check the Root previleges
-if [[ ${UID} -ne 0 ]]
-then
-		echo " Run as roos or sudo..!"
-		exit 1
-fi
+# if [[ ${UID} -ne 0 ]]
+# then
+# 		echo " Run as roos or sudo..!"
+# 		exit 1
+# fi
 
 # Initializigng the git
 git init 2>&1> /dev/null
 
-# Git Clone
+# Git status
 
+git status 1> println
+
+# Git Clone
+read -p -e "Enter Path : " DEST_PATH
+
+if [[ $DEST_PATH != '' ]]
+then
+	gitclone $DEST_PATH
+else
+	DEST_PATH= './'${DIRNAME}
+	gitclone $DEST_PATH
+	echo ${DEST_PATH}
+fi
 
 # Git Add
-println "Git addfiles"
-read -p -e "Enter Option(f/all) and Folder_Name : " Optn File_Name
-gitAdd ${Optn} ${File_Name}
+# println "Git addfiles"
+# read -p -e "Enter Option(f/all) and Folder_Name : " Optn File_Name
+# gitAdd ${Optn} ${File_Name}
 
-# Git remove
-echo
-read -p -e "Want to remove Git files y/n : " result path
-gitremove ${result} ${path}
+# # Git remove
+# echo
+# read -p -e "Want to remove Git files y/n : " result path
+# gitremove ${result} ${path}
 
-# Git Commit
-println "Git Commit"
-read -p -e "Message : " msg
-read -p -e "Git path / Repository path : " gpath
+# # Git Commit
+# println "Git Commit"
+# read -p -e "Message : " msg
+# read -p -e "Git path / Repository path : " gpath
 
-bool=$(gitcommit ${msg} ${gpath})
-echo "$bool"
+# bool=$(gitcommit ${msg} ${gpath})
+# echo "$bool"
 
 
 

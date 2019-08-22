@@ -15,10 +15,10 @@ read -p "Enter URL: " URL # > errorsh.
 
 #nullOrNot(){
 #	local url=${0}
-	if [[ ${URL} == "" ]]
-	then
-		echo "Null Value..!!" | error.sh 
-		exit 1
-	fi
+	# if [[ ${URL} == "" ]]
+	# then
+	# 	echo "Null Value..!!" | error.sh 
+	# 	exit 1
+	# fi
 #}
 echo "${URL}"

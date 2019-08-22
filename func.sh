@@ -15,29 +15,44 @@ error(){
 	echo
 }
 
-
+# Git Clone
 gitclone(){
-echo "Clone repository-------"
-read -p "Remote Clone ' r ' or Local Clone ' l ': " Clone
+echo "Cloning repository-------"
 
-while getopts r:l: $Clone
-do
-	case ${Clone} in
-	r) 
-		PATH=${OPTARG}
-		echo "Remote Clone.. ${PATH} " 
-		;;
-	l)
-		PATH=${OPTARG}
-		echo "Local Clone.. ${PATH} " 
-		;;
-	?)
-		echo "Invalid Option.."
-		echo "Please Enter 'r' or 'l' for Cloning"
-		exit 1
-		;;
-	esac 
-done
+DEST_PATH=${*}
+
+git clone ${DEST_PATH}
+
+#iT=isTrue "Cloned Successfully and Stored in ${*}"
+
+if [[ ${?} -eq 0 ]]
+	then
+		echo "Cloned Successfully and Stored in ${*}"
+	else
+		echo "----->>> Clone FAILED <<<-----"
+
+		#exit 1  execute previous command
+fi
+
+#read -p "Remote Clone ' r ' or Local Clone ' l ': " Clone
+# while getopts r:l: $Clone
+# do
+# 	case ${Clone} in
+# 	r) 
+# 		PATH=${OPTARG}
+# 		echo "Remote Clone.. ${PATH} " 
+# 		;;
+# 	l)
+# 		PATH=${OPTARG}
+# 		echo "Local Clone.. ${PATH} " 
+# 		;;
+# 	?)
+# 		echo "Invalid Option.."
+# 		echo "Please Enter 'r' or 'l' for Cloning"
+# 		exit 1
+# 		;;
+# 	esac 
+# done
 
 }
 
@@ -82,12 +97,22 @@ gitcommit(){
 	# git pull
 }
 
-somefunc(){
-	len=${#}
-	for args in ${*}
-	do
-		#echo "${args}" | head -c1 > a 
-		echo " ${args}------------"
-		#len=$(expr $len - 1)
-	done
+# somefunc(){
+# 	len=${#}
+# 	for args in ${*}
+# 	do
+# 		#echo "${args}" | head -c1 > a 
+# 		echo " ${args}------------"
+# 		#len=$(expr $len - 1)
+# 	done
+# }
+
+isTrue(){
+	if [[ ${?} -eq 0 ]]
+	then
+		echo "-----${*}-----"
+	else
+		echo "----->>> FAILED <<<-----"
+		#exit 1  execute previous command
+	fi
 }
